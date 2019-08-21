@@ -1,85 +1,53 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React, {Fragment} from 'react'
+import {createBottomTabNavigator, createAppContainer} from "react-navigation";
 
-import React, {Fragment} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import Remote from "./components/Remote";
+import Channels from "./components/Channels";
 
-import Main from "./components/Main";
+import MaterialIcon from "react-native-vector-icons/MaterialIcons";
+import FontistoIcon from "react-native-vector-icons/Fontisto";
 
-const App = () => {
-  return (
-    <Fragment>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <View style={styles.body}>
-          <Main />
-        </View>
-      </SafeAreaView>
-    </Fragment>
-  );
+MaterialIcon.loadFont();
+FontistoIcon.loadFont();
+
+const TABS = {
+  REMOTE: "remote",
+  CHANNELS: "channels"
 };
 
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff'
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
+const getTabBarIcon = (navigation, tintColor) => {
+  const {routeName} = navigation.state;
+  let IconComponent = MaterialIcon;
+  let iconName;
+  if(routeName === TABS.REMOTE) {
+    iconName = "remote";
+  } else if(routeName === TABS.CHANNELS) {
+    iconName = "nav-icon-grid";
+    IconComponent = FontistoIcon;
+  }
+  console.log(IconComponent)
+  return <IconComponent name={iconName} type="clear" size={25} color={tintColor} />;
+}
 
-export default App;
+export default createAppContainer(
+  createBottomTabNavigator({
+    Remote,
+    Channels
+  }, {
+    initialRouteName: "Remote",
+    defaultNavigationOptions: ({navigation}) => ({
+      tabBarIcon: ({tintColor}) =>
+        getTabBarIcon(navigation, tintColor),
+    }),
+    tabBarOptions: {
+      activeTintColor: "#fff",
+      inactiveTintColor: "#515151",
+      style: {
+        backgroundColor: "#323232",
+        borderTopColor: "#fff",
+        borderWidth: 2
+      }
+    },
+  })
+)
