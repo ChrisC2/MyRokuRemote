@@ -12,22 +12,23 @@ MaterialIcon.loadFont();
 FontistoIcon.loadFont();
 
 const TABS = {
-  REMOTE: "remote",
-  CHANNELS: "channels"
+  REMOTE: "Remote",
+  CHANNELS: "Channels"
 };
 
 const getTabBarIcon = (navigation, tintColor) => {
   const {routeName} = navigation.state;
+
   let IconComponent = MaterialIcon;
   let iconName;
+
   if(routeName === TABS.REMOTE) {
-    iconName = "remote";
+    iconName = "settings-remote";
   } else if(routeName === TABS.CHANNELS) {
     iconName = "nav-icon-grid";
     IconComponent = FontistoIcon;
   }
-  console.log(IconComponent)
-  return <IconComponent name={iconName} type="clear" size={25} color={tintColor} />;
+  return <IconComponent name={iconName} size={20} color={tintColor} />;
 }
 
 export default createAppContainer(
@@ -42,11 +43,14 @@ export default createAppContainer(
     }),
     tabBarOptions: {
       activeTintColor: "#fff",
-      inactiveTintColor: "#515151",
+      inactiveTintColor: "#939393",
+      labelStyle: {
+        bottom: 0
+      },
       style: {
         backgroundColor: "#323232",
         borderTopColor: "#fff",
-        borderWidth: 2
+        borderWidth: 4
       }
     },
   })

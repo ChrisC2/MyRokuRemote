@@ -1,19 +1,13 @@
 import React, {Component, Fragment} from "react";
-import {StyleSheet, Text, TouchableOpacity, ActivityIndicator} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {KEYS} from "../constants/key-constants";
 
-import {NavigationBar, DropDownMenu, Title, Button, View, Icon} from "@shoutem/ui";
-
-import {sendClick, discoverDevices} from "../helpers/api/roku-api";
+import {NavigationBar, DropDownMenu, Title, Button, View, Icon, Spinner, Image} from "@shoutem/ui";
+import {sendClick, discoverDevices, getDeviceApps, getAppImage} from "../helpers/api/roku-api";
 
 import AntIcon from "react-native-vector-icons/AntDesign";
 
 AntIcon.loadFont();
-
-const DEVICES = {
-  "http://192.168.0.107:8060/": "Bedroom Roku",
-  "http://192.168.0.113:8060/": "SHARP ROKU TV"
-};
 
 const styles = StyleSheet.create({
   main: {
@@ -28,6 +22,8 @@ const styles = StyleSheet.create({
   },
   navigation: {
     color: "#515151",
+    backgroundColor: "#323232",
+    height: 200
   },
   button: {
     height: 60,
@@ -70,19 +66,23 @@ export default class Remote extends Component {
       isLoading: true,
       device: null,
       rokus: [],
-      selectedDevice: null
+      selectedDevice: null,
+      image: null
     }
   }
 
   async componentDidMount() {
-    const res = await discoverDevices();
-    console.log("THIS IS RES", res)
-    const rokus = res.map((ip => ({deviceName: DEVICES[ip] || ip, ip})))
+    const rokus = await discoverDevices();
+    const deviceApps = await getDeviceApps(rokus[0].ip)
+    const appImage = await getAppImage(rokus[0].ip, 12)
+    console.log("DEVICE APPS!", deviceApps)
+    console.log("deviceIMAGE", appImage)
   
     this.setState({
       isLoading: false,
       selectedDevice: rokus[0],
       rokus,
+      image: appImage
     })
   }
 
@@ -90,7 +90,7 @@ export default class Remote extends Component {
     const {isLoading} = this.state;
     if (!isLoading) return null;
     return (
-      <ActivityIndicator style={styles.spinner} size="large" color="#7F31BA" />
+      <Spinner style={styles.spinner} size="large" color="#7F31BA" />
     )
   }
 
@@ -109,6 +109,23 @@ export default class Remote extends Component {
     return (
       <DropDownMenu
         styleName="horizontal"
+        style={{
+          horizontalContainer: {
+            backgroundColor: "#323232",
+            opacity: 100,
+            top: -25,
+            paddingTop: 60,
+            height: 100
+          },
+          selectedOption: {
+            "shoutem.ui.Text": {
+              color: "#fff"
+            },
+            "shoutem.ui.Icon": {
+              color: "#fff"
+            }
+          }
+        }}
         options={rokus}
         onOptionSelected={(device) => this.setState({ selectedDevice: device })}
         selectedOption={selectedDevice ? selectedDevice : rokus[0]}
@@ -177,16 +194,18 @@ export default class Remote extends Component {
 
   render() {
     if(!this.state.selectedDevice) return null;
+    console.log("THIS IS IMAGE", this.state.image)
     return (
       <View styleName="fill-parent" style={styles.main}>
-        <NavigationBar
-              styleName="inline"
+        {/* <NavigationBar
+              styleName="clear inline"
               style={styles.navigation}
-              centerComponent={<Title styleName="h-center" style={{color: "black"}}>My Roku Remote</Title>}
-            />
-            {this.renderSpinner()}
+              centerComponent={this.renderDeviceDropdown()}
+            /> */}
             {this.renderDeviceDropdown()}
+            {this.renderSpinner()}
             {this.renderRemote()}
+            {this.state.image && <Image style={{height: 100, width: 100, padding: 20, margin: 30, resizeMode: "stretch"}} source={{uri: `data:image/jpeg;base64,${this.state.image}`}} />}
       </View>
     )
   }
