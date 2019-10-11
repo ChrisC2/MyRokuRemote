@@ -1,6 +1,8 @@
 const dgram = require('react-native-udp');
 const RNFetchBlob = require("rn-fetch-blob").default;
 const convert = require("xml-js");
+import AsyncStorage from '@react-native-community/async-storage';
+
 
 const getQuery = () => {
   global.Buffer = global.Buffer || require('buffer').Buffer;
@@ -21,46 +23,46 @@ const getListener = (client) => () => {
   client.send(...params);
 };
 
-function arrayBufferToBase64(buffer) {
-  var binary = '';
-  var bytes = [].slice.call(new Uint8Array(buffer));
+export const getAppImage = async (deviceUrl, appId) => {
+  try {
+    const url = `${deviceUrl}query/icon/${appId}`;
+    const res = await RNFetchBlob.fetch("GET", url);
+    const status = res.info().status;
 
-  bytes.forEach((b) => binary += String.fromCharCode(b));
-
-  return window.btoa(binary);
-};
-
-export const getAppImage = (deviceUrl, appId) => {
-  return RNFetchBlob.fetch("GET", `${deviceUrl}query/icon/${appId}`)
-    .then(res => {
-      console.log("RES INFO", res.info())
-      let status = res.info().status;
-      if(status === 200) {
-        let base64Img = res.base64()
-        return base64Img
-      }
-    })
-   
-    // .then(blob => {
-    //   let base64Img = '';
-    //   const fileReader = new FileReader();
-    //   fileReader.readAsDataURL(blob);
-    //   fileReader.onload = () => {
-    //     base64Img = fileReader.result;
-    //     return base64Img;
-    //   }
-    //   return base64Img;
-    // })
+    if (status === 200) {
+      return res.base64();
+    }
+  }
+  catch (err) {
+    console.warn("ERROR::getAppImage() failed::", err);
+  }
 }
-export const getDeviceApps = (deviceUrl) => {
-  return fetch(`${deviceUrl}query/apps`, {method: "GET"})
-    .then(res => res.text())
-    .then(xml => convert.xml2js(xml, {compact: true}))
-    .then(data => {
-      return data.apps.app.map(({_attributes: {id}, _text: appName}) => {
-        return {id, appName}
-      })
-    })
+
+export const getDeviceApps = async (deviceUrl) => {
+  try {
+    const url = `${deviceUrl}query/apps`;
+    const res = await fetch(url, {
+      method: "GET"
+    });
+
+    const xml = await res.text();
+    const {apps: {app: apps}} = await convert.xml2js(xml, {compact: true});
+    console.log("APPS", apps)
+    const deviceApps = apps.length && await Promise.all(apps.map(async ({_attributes: {id}, _text: appName}) => {
+      const base64Image = await getAppImage(deviceUrl, id);
+
+      return {
+        id,
+        appName,
+        image: base64Image
+      }
+    }));
+    console.log("GETTING DEVICE APPS", deviceApps)
+
+    return deviceApps;
+  } catch (err) {
+    console.warn("ERROR::getDeviceApps() failed::", err);
+  }
 }
 
 const getDeviceInfo = (deviceUrl) => {
@@ -95,10 +97,48 @@ export const discoverDevices = async () => new Promise((resolve, reject) => {
   client.on('close', () => { resolve(rokuUrls); })
 });
 
+export const onLoad = async () => {
+
+  try {
+    let rokuApps = [];
+    // await AsyncStorage.clear()
+    // let rokuDevices = await AsyncStorage.getItem('@rokus');
+    let rokuDevices = null;
+    console.log("Roku devies", rokuDevices)
+    if (!rokuDevices || !rokuDevices.length) {
+      rokuDevices = await discoverDevices();
+      console.log("RKOU IN IF", rokuDevices)
+      // await AsyncStorage.setItem('@rokus', JSON.stringify(rokuDevices));
+    } else {
+      rokuDevices = JSON.parse(rokuDevices);
+    }
+    console.log("ROOKU DEVICES!?!", rokuDevices)
+    rokuApps = rokuDevices && await Promise.all(
+      rokuDevices.map(async ({ip}) => await getDeviceApps(ip))
+    );
+    console.log("ROKUAPPS", rokuApps)
+    return {rokuDevices, rokuApps};
+    } catch (err) {
+      console.warn("::onLoad() failed::", err);
+      return {
+        rokuDevices: [],
+        rokuApps: []
+      };
+    }
+}
+
 export const sendClick = async (device, key) => {
   const url = `${device}keypress/${key}`;
   console.log("URL", url)
   return await fetch(`${device}keypress/${key}`, {
+    method: "POST"
+  });
+};
+
+export const launchApp = async (device, appId) => {
+  const url = `${device}launch/${appId}`;
+  console.log("URL", url)
+  return await fetch(url, {
     method: "POST"
   });
 };

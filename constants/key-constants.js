@@ -14,5 +14,8 @@ export const KEYS = {
   BACKSPACE: "Backspace",
   SEARCH: "Search",
   ENTER: "Enter",
-  POWER: "PowerOff"
+  POWER: "Power",
+  MUTE: "VolumeMute",
+  VOL_UP: "VolumeUp",
+  VOL_DOWN: "VolumeDown"
 };

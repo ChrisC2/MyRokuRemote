@@ -1,18 +1,23 @@
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {NavigationActions} from "react-navigation";
 import {KEYS} from "../constants/key-constants";
 
-import {NavigationBar, DropDownMenu, Title, Button, View, Icon, Spinner, Image} from "@shoutem/ui";
-import {sendClick, discoverDevices, getDeviceApps, getAppImage} from "../helpers/api/roku-api";
+import {DropDownMenu, Button, View, Icon, Spinner} from "@shoutem/ui";
+import {sendClick} from "../helpers/api/roku-api";
 
 import AntIcon from "react-native-vector-icons/AntDesign";
+import FeatherIcon from "react-native-vector-icons/Feather";
+import MaterialIcon from "react-native-vector-icons/MaterialCommunityIcons";
 
 AntIcon.loadFont();
+FeatherIcon.loadFont();
+MaterialIcon.loadFont();
 
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: "#323232",
   },
@@ -37,14 +42,29 @@ const styles = StyleSheet.create({
     borderStyle: "solid"
 
   },
-  backBtn: {
+  smBoxBtn: {
+    height: 50,
+    width: 50,
+    backgroundColor: "transparent",
+    borderColor: "#fff",
+    borderWidth: 2,
+    borderStyle: "solid",
+    borderRadius: 15,
+    alignItems: "center",
+    justifyContent: "center",
+    margin: 10
+  },
+  boxBtn: {
     height: 40,
     width: 70,
     backgroundColor: "transparent",
     borderColor: "#fff",
     borderWidth: 2,
     borderStyle: "solid",
-    borderRadius: 15
+    borderRadius: 15,
+    alignItems: "center",
+    justifyContent: "center",
+    margin: 10
   },
   powerBtn: {
     height: 40,
@@ -59,31 +79,20 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class Remote extends Component {
+export default class RemoteScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true,
-      device: null,
-      rokus: [],
-      selectedDevice: null,
-      image: null
+      selectedDevice: null
     }
   }
 
-  async componentDidMount() {
-    const rokus = await discoverDevices();
-    const deviceApps = await getDeviceApps(rokus[0].ip)
-    const appImage = await getAppImage(rokus[0].ip, 12)
-    console.log("DEVICE APPS!", deviceApps)
-    console.log("deviceIMAGE", appImage)
+  componentDidMount() {
+    const {params: {selectedDevice}} = this.props;
   
     this.setState({
-      isLoading: false,
-      selectedDevice: rokus[0],
-      rokus,
-      image: appImage
-    })
+      selectedDevice,
+    });
   }
 
   renderSpinner() {
@@ -95,16 +104,22 @@ export default class Remote extends Component {
   }
 
   handleKeyPress = (key) => {
-    const {selectedDevice} = this.props;
+    const {selectedDevice} = this.state;
     console.log("SELECTED : ", selectedDevice)
     if (!selectedDevice) return;
     return sendClick(selectedDevice.ip, key);
   }
 
+  updateSelectedDevice = (selectedDevice) => {
+    const {params, navigation} = this.props;
+    this.setState({selectedDevice});
+    navigation.dispatch(NavigationActions.setParams({params: selectedDevice, key: "Channels" }))
+  }
+
   renderDeviceDropdown() {
-    const {rokus, selectedDevice} = this.state;
-    console.log("ROKUS", rokus)
-    if(!rokus.length) return null;
+    const {selectedDevice} = this.state;
+    const {params: {rokuDevices}} = this.props;
+    if(!rokuDevices.length) return null;
 
     return (
       <DropDownMenu
@@ -126,9 +141,9 @@ export default class Remote extends Component {
             }
           }
         }}
-        options={rokus}
-        onOptionSelected={(device) => this.setState({ selectedDevice: device })}
-        selectedOption={selectedDevice ? selectedDevice : rokus[0]}
+        options={rokuDevices}
+        onOptionSelected={this.updateSelectedDevice}
+        selectedOption={selectedDevice}
         titleProperty="deviceName"
         valueProperty="roku.ip"
         />
@@ -138,13 +153,7 @@ export default class Remote extends Component {
   renderRemote() {
     return (
       <View styleName="vertical v-center" style={styles.main}>
-        <View styleName="horizontal v-center" style={{height: 100, width: 175, justifyContent: "space-between", marginTop: 50, marginBottom: 30 }}>
-        <Button
-          style={styles.backBtn}
-          styleName="secondary"
-          onPress={() => this.handleKeyPress(KEYS.BACK)}>
-          <Icon name="back" />
-        </Button>
+        <View styleName="horizontal h-center" style={{flex: 1/2, alignItems: "flex-start"}}>
         <TouchableOpacity
           onPress={() => this.handleKeyPress(KEYS.POWER)}
         >
@@ -157,55 +166,164 @@ export default class Remote extends Component {
             </AntIcon>
           </View>
         </TouchableOpacity>
+
         </View>
-        <Button
-            style={styles.button}
-            onPress={() => this.handleKeyPress(KEYS.UP)}
-          >
-          <Icon name="up-arrow" style={{color: "#fff"}} />
-          </Button>
-        <View styleName="horizontal h-center">
+        <View styleName="horizontal h-center" style={{flex: 1/2, alignContent: "space-between", alignItems: "center", paddingBottom: 40}}>
           <Button
-            style={styles.button}
-            onPress={() => this.handleKeyPress(KEYS.LEFT)}
-          >
-          <Icon name="left-arrow" style={{color: "#fff"}} />
+            style={styles.boxBtn}
+            styleName="secondary"
+            onPress={() => this.handleKeyPress(KEYS.BACK)}>
+            <Icon name="back" />
           </Button>
+          <TouchableOpacity
+              onPress={() => this.handleKeyPress(KEYS.INFO)}
+            >
+              <View style={styles.boxBtn}>
+                <AntIcon
+                  color="white"
+                  name="infocirlceo"
+                  type="clear"
+                  size={20}>
+                </AntIcon>
+              </View>
+            </TouchableOpacity>
+          <TouchableOpacity
+              onPress={() => this.handleKeyPress(KEYS.HOME)}
+            >
+              <View style={styles.boxBtn}>
+                <AntIcon
+                  color="white"
+                  name="home"
+                  type="clear"
+                  size={20}>
+                </AntIcon>
+              </View>
+            </TouchableOpacity>
+        </View>
+        <View style={{flex: 4}}>
+          <View styleName="horizontal h-center">
           <Button
-            style={styles.button}
-            styleName="stacked tight"
-            onPress={() => this.handleKeyPress(KEYS.SELECT)}>
-              <Text style={{color: "#fff", fontWeight: "bold"}}>OK</Text>
-          </Button>
-          <Button
-            style={styles.button}
-            onPress={() => this.handleKeyPress(KEYS.RIGHT)}>
-              < Icon name="right-arrow" style={{color: "#fff"}} />
-          </Button>
+              style={styles.button}
+              onPress={() => this.handleKeyPress(KEYS.UP)}
+            >
+            <Icon name="up-arrow" style={{color: "#fff"}} />
+            </Button>
           </View>
-          <Button
-            style={styles.button}
-            onPress={() => this.handleKeyPress(KEYS.DOWN)}>
-              <Icon name="down-arrow" style={{color: "#fff"}} />
-          </Button>
+          <View styleName="horizontal h-center">
+            <Button
+              style={styles.button}
+              onPress={() => this.handleKeyPress(KEYS.LEFT)}
+            >
+            <Icon name="left-arrow" style={{color: "#fff"}} />
+            </Button>
+            <Button
+              style={styles.button}
+              styleName="stacked tight"
+              onPress={() => this.handleKeyPress(KEYS.SELECT)}>
+                <Text style={{color: "#fff", fontWeight: "bold"}}>OK</Text>
+            </Button>
+            <Button
+              style={styles.button}
+              onPress={() => this.handleKeyPress(KEYS.RIGHT)}>
+                < Icon name="right-arrow" style={{color: "#fff"}} />
+            </Button>
+            </View>
+            <View styleName="horizontal h-center">
+            <Button
+              style={styles.button}
+              onPress={() => this.handleKeyPress(KEYS.DOWN)}>
+                <Icon name="down-arrow" style={{color: "#fff"}} />
+            </Button>
+            </View>
+            <View styleName="horizontal h-center" style={{flex: .5, alignItems: "flex-end"}}>
+            <TouchableOpacity
+              onPress={() => this.handleKeyPress(KEYS.REV)}
+            >
+              <View style={styles.smBoxBtn}>
+                <MaterialIcon
+                  color="white"
+                  name="rewind-outline"
+                  type="clear"
+                  size={20}>
+                </MaterialIcon>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.handleKeyPress(KEYS.PLAY)}
+            >
+              <View style={styles.smBoxBtn}>
+                <MaterialIcon
+                  color="white"
+                  name="play-pause"
+                  type="clear"
+                  size={20}>
+                </MaterialIcon>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.handleKeyPress(KEYS.FWD)}
+            >
+              <View style={styles.smBoxBtn}>
+                <MaterialIcon
+                  color="white"
+                  name="fast-forward-outline"
+                  type="clear"
+                  size={20}>
+                </MaterialIcon>
+              </View>
+            </TouchableOpacity>
+            </View>
+            <View styleName="horizontal h-center" style={{flex: .5, alignItems: "flex-start"}}>
+            <TouchableOpacity
+              onPress={() => this.handleKeyPress(KEYS.MUTE)}
+            >
+              <View style={styles.smBoxBtn}>
+                <FeatherIcon
+                  color="white"
+                  name="volume-x"
+                  type="clear"
+                  size={20}>
+                </FeatherIcon>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.handleKeyPress(KEYS.VOL_DOWN)}
+            >
+              <View style={styles.smBoxBtn}>
+                <FeatherIcon
+                  color="white"
+                  name="volume-1"
+                  type="clear"
+                  size={20}>
+                </FeatherIcon>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.handleKeyPress(KEYS.VOL_UP)}
+            >
+              <View style={styles.smBoxBtn}>
+                <FeatherIcon
+                  color="white"
+                  name="volume-2"
+                  type="clear"
+                  size={20}>
+                </FeatherIcon>
+              </View>
+            </TouchableOpacity>
+            </View>
+        </View>
       </View>
     )
   }
 
   render() {
     if(!this.state.selectedDevice) return null;
-    console.log("THIS IS IMAGE", this.state.image)
+    console.log("THIS IS PROPS!", this.props)
     return (
       <View styleName="fill-parent" style={styles.main}>
-        {/* <NavigationBar
-              styleName="clear inline"
-              style={styles.navigation}
-              centerComponent={this.renderDeviceDropdown()}
-            /> */}
             {this.renderDeviceDropdown()}
             {this.renderSpinner()}
             {this.renderRemote()}
-            {this.state.image && <Image style={{height: 100, width: 100, padding: 20, margin: 30, resizeMode: "stretch"}} source={{uri: `data:image/jpeg;base64,${this.state.image}`}} />}
       </View>
     )
   }
