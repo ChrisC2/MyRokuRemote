@@ -14,15 +14,11 @@ const styles = StyleSheet.create({
   navigation: {
     color: "#515151"
   }
-})
+});
 
 export default class ChannelsScreen extends Component {
   constructor(props) {
     super(props);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    console.log("ChANNELS NEXT PROPS", nextProps)
   }
 
   renderTitle() {
@@ -38,7 +34,7 @@ export default class ChannelsScreen extends Component {
           alignSelf: "stretch"
         }}>
           <Text style={{paddingTop: 43, paddingBottom: 10, color: "#fff", letterSpacing: 1}}>Channels</Text>
-      </View>   
+      </View>
     )
   }
 
@@ -47,10 +43,9 @@ export default class ChannelsScreen extends Component {
     this.props.navigation.navigate("Remote");
   }
   render() {
-    const {navigation: {state: {routeName}}, params: {rokuApps, selectedDevice}} = this.props;
-    console.log("THIS IS PROPS in CHANNELS", this.props);
-    
-    const renderApp = ({item: {image, id, ip}}) =>  {
+    const {navigation: {state: {routeName}}, params: {selectedDevice}, route} = this.props;
+
+    const renderApp = ({item: {image, id, ip}}) => {
       return (
         <TouchableOpacity
           onPress={() => this.handleAppClick(selectedDevice, id)}
@@ -73,7 +68,7 @@ export default class ChannelsScreen extends Component {
          {this.renderTitle()}
          {/* {apps} */}
          <FlatList
-          data={rokuApps[0]}
+          data={selectedDevice.apps}
           renderItem={renderApp}
           numColumns={3}
          />

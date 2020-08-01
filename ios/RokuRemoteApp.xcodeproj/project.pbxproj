@@ -18,6 +18,7 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* RokuRemoteAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* RokuRemoteAppTests.m */; };
 		39D5E9C01F314341A53A7566 /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C341AA5AB15B450D99555D6F /* Rubik-MediumItalic.ttf */; };
+		3B72F54D4E9C86C385E98016 /* libPods-RokuRemoteApp-RokuRemoteAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 597DAA358F7132FAC0C03ED6 /* libPods-RokuRemoteApp-RokuRemoteAppTests.a */; };
 		448451EC1A017FD08AFAFBE4 /* libPods-RokuRemoteApp-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B469CA2B44078314C161D42C /* libPods-RokuRemoteApp-tvOS.a */; };
 		4A4F1D343504405D96EE396A /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 13BE1CF724E54125B2476F9C /* Rubik-Regular.ttf */; };
 		4A64F3BFA45D4A06B6961CE2 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE0FDABFE74145F4BCD986B2 /* Rubik-Light.ttf */; };
@@ -29,13 +30,13 @@
 		4C86FD5923187CF8000401D8 /* libReact-Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C86FD5823187CF8000401D8 /* libReact-Core.a */; };
 		4C86FD5A23187D01000401D8 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		4DA04CA8742F419FB79EAED1 /* Rubik-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 886A487BA8B3405C87E13EC7 /* Rubik-LightItalic.ttf */; };
+		5488B6EA282292660C9F81C7 /* libPods-RokuRemoteApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F736B3CC2724D71A644651CE /* libPods-RokuRemoteApp.a */; };
 		58C200636E8640D1917356EE /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8E360D48F43B44EC963AD8CD /* Rubik-Black.ttf */; };
 		5A3B5AE04B59464690A5A943 /* Rubik-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 06BF939437E64951829AB5F7 /* Rubik-Italic.ttf */; };
 		5E923438EF5543AFA90C9DF4 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1B3528FD401B47C09290E1B3 /* Rubik-Medium.ttf */; };
 		80D0CE4341FC4267A4ED60EB /* rubicon-icon-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 24075AB9044D4ABC8DBBCEC8 /* rubicon-icon-font.ttf */; };
 		A9E5A6838BA2482CB59DAAA4 /* Rubik-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4AAF5F123BF45A4BDB20EFC /* Rubik-BoldItalic.ttf */; };
 		AFC6AAE8F07A7A897D1BBBA7 /* libPods-RokuRemoteApp-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1251F6E65EFD44C25EAB105 /* libPods-RokuRemoteApp-tvOSTests.a */; };
-		F0B656C8D8A8099AD97E8AA1 /* libPods-RokuRemoteAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C838571A757E283D96D0B71A /* libPods-RokuRemoteAppTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* RokuRemoteAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RokuRemoteAppTests.m; sourceTree = "<group>"; };
 		06BF939437E64951829AB5F7 /* Rubik-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Italic.ttf"; path = "../node_modules/@shoutem/ui/fonts/Rubik-Italic.ttf"; sourceTree = "<group>"; };
+		0D69BDB8122F6B38B43A4271 /* Pods-RokuRemoteApp-RokuRemoteAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RokuRemoteApp-RokuRemoteAppTests.debug.xcconfig"; path = "Target Support Files/Pods-RokuRemoteApp-RokuRemoteAppTests/Pods-RokuRemoteApp-RokuRemoteAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* RokuRemoteApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RokuRemoteApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = RokuRemoteApp/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = RokuRemoteApp/AppDelegate.m; sourceTree = "<group>"; };
@@ -83,6 +85,8 @@
 		4C86FD5823187CF8000401D8 /* libReact-Core.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libReact-Core.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C86FD5B2318924C000401D8 /* RokuRemoteApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = RokuRemoteApp.entitlements; path = RokuRemoteApp/RokuRemoteApp.entitlements; sourceTree = "<group>"; };
 		4D72526F4E3AECFFC04B52C6 /* Pods-RokuRemoteApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RokuRemoteApp.debug.xcconfig"; path = "Target Support Files/Pods-RokuRemoteApp/Pods-RokuRemoteApp.debug.xcconfig"; sourceTree = "<group>"; };
+		597DAA358F7132FAC0C03ED6 /* libPods-RokuRemoteApp-RokuRemoteAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RokuRemoteApp-RokuRemoteAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E70064A0393A28BFAF31F4D /* Pods-RokuRemoteApp-RokuRemoteAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RokuRemoteApp-RokuRemoteAppTests.release.xcconfig"; path = "Target Support Files/Pods-RokuRemoteApp-RokuRemoteAppTests/Pods-RokuRemoteApp-RokuRemoteAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		886A487BA8B3405C87E13EC7 /* Rubik-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-LightItalic.ttf"; path = "../node_modules/@shoutem/ui/fonts/Rubik-LightItalic.ttf"; sourceTree = "<group>"; };
 		8E360D48F43B44EC963AD8CD /* Rubik-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Black.ttf"; path = "../node_modules/@shoutem/ui/fonts/Rubik-Black.ttf"; sourceTree = "<group>"; };
 		8E986570FC0B4FCDD1FCD8A6 /* Pods-RokuRemoteApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RokuRemoteApp.release.xcconfig"; path = "Target Support Files/Pods-RokuRemoteApp/Pods-RokuRemoteApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -92,7 +96,6 @@
 		B469CA2B44078314C161D42C /* libPods-RokuRemoteApp-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RokuRemoteApp-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2C6CA5BFA868F95FB27B9F4 /* Pods-RokuRemoteApp-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RokuRemoteApp-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-RokuRemoteApp-tvOSTests/Pods-RokuRemoteApp-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C341AA5AB15B450D99555D6F /* Rubik-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-MediumItalic.ttf"; path = "../node_modules/@shoutem/ui/fonts/Rubik-MediumItalic.ttf"; sourceTree = "<group>"; };
-		C838571A757E283D96D0B71A /* libPods-RokuRemoteAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RokuRemoteAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D75190FA34016AB204BB43D2 /* Pods-RokuRemoteAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RokuRemoteAppTests.debug.xcconfig"; path = "Target Support Files/Pods-RokuRemoteAppTests/Pods-RokuRemoteAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DE0FDABFE74145F4BCD986B2 /* Rubik-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Light.ttf"; path = "../node_modules/@shoutem/ui/fonts/Rubik-Light.ttf"; sourceTree = "<group>"; };
 		E3963C0445D648AA8D8A93AF /* Rubik-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Bold.ttf"; path = "../node_modules/@shoutem/ui/fonts/Rubik-Bold.ttf"; sourceTree = "<group>"; };
@@ -111,7 +114,7 @@
 			files = (
 				4C86FD5A23187D01000401D8 /* JavaScriptCore.framework in Frameworks */,
 				4C86FD5923187CF8000401D8 /* libReact-Core.a in Frameworks */,
-				F0B656C8D8A8099AD97E8AA1 /* libPods-RokuRemoteAppTests.a in Frameworks */,
+				3B72F54D4E9C86C385E98016 /* libPods-RokuRemoteApp-RokuRemoteAppTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +126,7 @@
 				4C0AC22823189F5F0064DE67 /* NetworkExtension.framework in Frameworks */,
 				4C0AC22A23189F720064DE67 /* ExternalAccessory.framework in Frameworks */,
 				4C86FD5523187C57000401D8 /* JavaScriptCore.framework in Frameworks */,
+				5488B6EA282292660C9F81C7 /* libPods-RokuRemoteApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,6 +192,8 @@
 				AED638DD33E7972624C1ADDC /* Pods-RokuRemoteApp-tvOSTests.release.xcconfig */,
 				D75190FA34016AB204BB43D2 /* Pods-RokuRemoteAppTests.debug.xcconfig */,
 				33E4BF6FC180067A90A9C1B8 /* Pods-RokuRemoteAppTests.release.xcconfig */,
+				0D69BDB8122F6B38B43A4271 /* Pods-RokuRemoteApp-RokuRemoteAppTests.debug.xcconfig */,
+				5E70064A0393A28BFAF31F4D /* Pods-RokuRemoteApp-RokuRemoteAppTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -207,7 +213,7 @@
 				F736B3CC2724D71A644651CE /* libPods-RokuRemoteApp.a */,
 				B469CA2B44078314C161D42C /* libPods-RokuRemoteApp-tvOS.a */,
 				F1251F6E65EFD44C25EAB105 /* libPods-RokuRemoteApp-tvOSTests.a */,
-				C838571A757E283D96D0B71A /* libPods-RokuRemoteAppTests.a */,
+				597DAA358F7132FAC0C03ED6 /* libPods-RokuRemoteApp-RokuRemoteAppTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -275,6 +281,7 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
+				01A11EF694C3BA91BD78C443 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -470,6 +477,23 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
+		01A11EF694C3BA91BD78C443 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RokuRemoteApp-RokuRemoteAppTests/Pods-RokuRemoteApp-RokuRemoteAppTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RokuRemoteApp-RokuRemoteAppTests/Pods-RokuRemoteApp-RokuRemoteAppTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RokuRemoteApp-RokuRemoteAppTests/Pods-RokuRemoteApp-RokuRemoteAppTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -555,43 +579,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-RokuRemoteApp/Pods-RokuRemoteApp-resources.sh",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RokuRemoteApp/Pods-RokuRemoteApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RokuRemoteApp/Pods-RokuRemoteApp-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -613,7 +606,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-RokuRemoteAppTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-RokuRemoteApp-RokuRemoteAppTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -725,7 +718,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D75190FA34016AB204BB43D2 /* Pods-RokuRemoteAppTests.debug.xcconfig */;
+			baseConfigurationReference = 0D69BDB8122F6B38B43A4271 /* Pods-RokuRemoteApp-RokuRemoteAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -757,7 +750,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 33E4BF6FC180067A90A9C1B8 /* Pods-RokuRemoteAppTests.release.xcconfig */;
+			baseConfigurationReference = 5E70064A0393A28BFAF31F4D /* Pods-RokuRemoteApp-RokuRemoteAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";

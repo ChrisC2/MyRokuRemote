@@ -105,15 +105,15 @@ export default class RemoteScreen extends Component {
 
   handleKeyPress = (key) => {
     const {selectedDevice} = this.state;
-    console.log("SELECTED : ", selectedDevice)
+
     if (!selectedDevice) return;
     return sendClick(selectedDevice.ip, key);
   }
 
   updateSelectedDevice = (selectedDevice) => {
-    const {params, navigation} = this.props;
+    const {navigation, params: {rokuDevices}} = this.props;
     this.setState({selectedDevice});
-    navigation.dispatch(NavigationActions.setParams({params: selectedDevice, key: "Channels" }))
+    this.props.navigation.navigate("App", {rokuDevices, selectedDevice})
   }
 
   renderDeviceDropdown() {
@@ -317,8 +317,8 @@ export default class RemoteScreen extends Component {
   }
 
   render() {
-    if(!this.state.selectedDevice) return null;
-    console.log("THIS IS PROPS!", this.props)
+    if (!this.state.selectedDevice) return null;
+
     return (
       <View styleName="fill-parent" style={styles.main}>
             {this.renderDeviceDropdown()}

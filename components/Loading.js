@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: "#323232",
+    backgroundColor: "#323232"
   },
   spinner: {
     flex: 1,
@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
     // position: "absolute"
   },
   centerContent: {
-    // flex: 1,
+    flex: 1,
+    alignItems: "center",
     alignSelf: "center",
     justifyContent: "center"
   }
@@ -33,7 +34,6 @@ export default class LoadingScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true,
       devicesFound: false,
       rokuDevices: []
     }
@@ -49,15 +49,16 @@ export default class LoadingScreen extends Component {
   }
 
   onLoad = async () => {
-    const {rokuDevices, rokuApps} = await onLoad();
-    console.log("RESPONSe", rokuDevices, rokuApps)
+    this.setState({isLoading: true});
+    const {rokuDevices} = await onLoad();
       if (!rokuDevices.length) {
         return this.setState({
           isLoading: false,
           devicesFound: false
         })
       }
-      this.props.navigation.navigate("App", {rokuDevices, rokuApps, selectedDevice: rokuDevices[0]})
+      this.setState({isLoading: false});
+      this.props.navigation.navigate("App", {rokuDevices, selectedDevice: rokuDevices[0], deviceIndex: 0})
   }
 
   renderSpinner() {
@@ -88,10 +89,9 @@ export default class LoadingScreen extends Component {
                 type="clear"
                 size={35}>
               </AntIcon>
-              <Text style={{alignItems: "center", color: "#fff", marginTop: 10}}>Retry</Text>
+              <Text style={{textAlign: "center", color: "#fff", marginTop: 10}}>Scan Network Again</Text>
             </View>
           </TouchableOpacity>
-          <Text style={{alignSelf: "center", justifyContent: "flex-end", color: "#fff", position: "absolute", textAlign: "center", bottom: 120, marginTop: 10}}>Roku and your iOS device must be located on the same Wi-Fi network</Text>
         </Fragment>
     )
   }
@@ -128,7 +128,7 @@ export default class LoadingScreen extends Component {
         {this.renderTitle()}
         <View styleName="vertical v-center">
           {this.renderSpinner()}
-          {/* {this.renderRetry()} */}
+          {this.renderRetry()}
         </View>
       </View>
     )
